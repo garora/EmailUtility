@@ -1,45 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Utility.Core;
-
-namespace Utility
+﻿namespace Utility.Core
 {
     public class BoolErrorsItem : BoolMessageItem
     {
         protected IErrors _errors;
 
-        public IErrors Errors
-        {
-            get
-            {
-                return this._errors;
-            }
-        }
-
         public BoolErrorsItem(object item, bool success, string message, IErrors errors)
             : base(item, success, message)
         {
-            this._errors = errors;
+            _errors = errors;
+        }
+
+        public IErrors Errors
+        {
+            get { return _errors; }
         }
     }
 
     public class BoolErrorsItem<T> : BoolErrorsItem
     {
-        public T Item
+        public BoolErrorsItem(T item, bool success, string message, IValidationResults errors)
+            : base(item, success, message, errors)
         {
-            get
-            {
-                return (T)base.Item;
-            }
+            _errors = errors;
         }
 
-        public BoolErrorsItem(T item, bool success, string message, IValidationResults errors)
-            : base((object)item, success, message, (IErrors)errors)
+        public T Item
         {
-            this._errors = (IErrors)errors;
+            get { return (T) base.Item; }
         }
     }
 }

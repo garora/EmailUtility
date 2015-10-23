@@ -114,7 +114,7 @@ namespace Utility.Core
             var stringBuilder = new StringBuilder();
             using (var memStream = new MemoryStream())
             {
-                new SoapFormatter().Serialize((Stream) memStream, o);
+                new SoapFormatter().Serialize(memStream, o);
                 str = StringHelper.MemoryStreamToString(memStream);
             }
             return str;
@@ -124,8 +124,8 @@ namespace Utility.Core
         {
             try
             {
-                using (MemoryStream memoryStream = StringHelper.StringToMemoryStream(soap))
-                    return new SoapFormatter().Deserialize((Stream) memoryStream);
+                using (var memoryStream = StringHelper.StringToMemoryStream(soap))
+                    return new SoapFormatter().Deserialize(memoryStream);
             }
             catch (Exception ex)
             {

@@ -81,8 +81,8 @@ namespace Utility.Logging
             private readonly AutoResetEvent _addedToList;
             private readonly bool _disposed = false;
             private readonly long _fileSize;
-            private bool _kill;
             private readonly ArrayList _logStatementBuffer;
+            private bool _kill;
             private Mutex _mutex;
 
             public MultiProcessLogFileWriter(string fileName, long fileSize)
@@ -198,7 +198,7 @@ namespace Utility.Logging
             private static void DeleteOldFiles(string filePattern, DirectoryInfo workingDirectory, FileInfo _file)
             {
                 var length = workingDirectory.GetFiles(filePattern).Length;
-                string s = ConfigurationManager.AppSettings["maxlogfiles"];
+                var s = ConfigurationManager.AppSettings["maxlogfiles"];
                 var result = 5;
                 if (!int.TryParse(s, out result))
                     result = 5;

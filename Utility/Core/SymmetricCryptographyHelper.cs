@@ -1,70 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utility.Core
 {
     public class SymmetricCryptographyHelper : CryptographyHelperBase
     {
+        private SymmetricAlgorithm algorithm;
         protected CryptographyAlgorithm algorithmId;
         protected string entropy;
-        private SymmetricAlgorithm algorithm;
         private int keyLength;
-
-        public override CryptographyAlgorithm Algorithm
-        {
-            get
-            {
-                return this.algorithmId;
-            }
-        }
-
-        public override string Entropy
-        {
-            get
-            {
-                return this.entropy;
-            }
-            set
-            {
-                this.entropy = value;
-            }
-        }
 
         public SymmetricCryptographyHelper(CryptographyAlgorithm algId)
         {
-            this.algorithmId = algId;
+            algorithmId = algId;
         }
 
         public SymmetricCryptographyHelper(CryptographyAlgorithm algId, string password)
         {
-            this.algorithmId = algId;
-            this.entropy = password;
+            algorithmId = algId;
+            entropy = password;
+        }
+
+        public override CryptographyAlgorithm Algorithm
+        {
+            get { return algorithmId; }
+        }
+
+        public override string Entropy
+        {
+            get { return entropy; }
+            set { entropy = value; }
         }
 
         public override byte[] Encrypt(byte[] plaintext)
         {
-            if (this.algorithm == null)
-                this.GetCryptoAlgorithm();
-            using (MemoryStream memoryStream = new MemoryStream())
+            if (algorithm == null)
+                GetCryptoAlgorithm();
+            using (var memoryStream = new MemoryStream())
             {
-                byte[] salt = this.GetSalt();
+                var salt = GetSalt();
                 memoryStream.Write(salt, 0, salt.Length);
-                this.algorithm.GenerateIV();
-                memoryStream.Write(this.algorithm.IV, 0, this.algorithm.IV.Length);
-                this.algorithm.Key = this.GetKey(salt);
-                using (ICryptoTransform encryptor = this.algorithm.CreateEncryptor())
+                algorithm.GenerateIV();
+                memoryStream.Write(algorithm.IV, 0, algorithm.IV.Length);
+                algorithm.Key = GetKey(salt);
+                using (var encryptor = algorithm.CreateEncryptor())
                 {
-                    using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write))
+                    using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
                     {
                         cryptoStream.Write(plaintext, 0, plaintext.Length);
                         cryptoStream.FlushFinalBlock();
                         memoryStream.Flush();
-                        byte[] numArray = memoryStream.ToArray();
+                        var numArray = memoryStream.ToArray();
                         cryptoStream.Close();
                         return numArray;
                     }
@@ -74,20 +61,22 @@ namespace Utility.Core
 
         public override byte[] Decrypt(byte[] cipherText)
         {
-            if (this.algorithm == null)
-                this.GetCryptoAlgorithm();
-            using (MemoryStream memoryStream1 = new MemoryStream(cipherText))
+            if (algorithm == null)
+                GetCryptoAlgorithm();
+            using (var memoryStream1 = new MemoryStream(cipherText))
             {
-                byte[] numArray1 = new byte[16];
-                byte[] buffer1 = new byte[this.algorithm.IV.Length];
+                var numArray1 = new byte[16];
+                var buffer1 = new byte[algorithm.IV.Length];
                 memoryStream1.Read(numArray1, 0, numArray1.Length);
                 memoryStream1.Read(buffer1, 0, buffer1.Length);
-                this.algorithm.Key = this.GetKey(numArray1);
-                this.algorithm.IV = buffer1;
-                using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream1, this.algorithm.CreateDecryptor(), CryptoStreamMode.Read))
+                algorithm.Key = GetKey(numArray1);
+                algorithm.IV = buffer1;
+                using (
+                    var cryptoStream = new CryptoStream(memoryStream1, algorithm.CreateDecryptor(),
+                        CryptoStreamMode.Read))
                 {
-                    byte[] buffer2 = new byte[256];
-                    using (MemoryStream memoryStream2 = new MemoryStream())
+                    var buffer2 = new byte[256];
+                    using (var memoryStream2 = new MemoryStream())
                     {
                         try
                         {
@@ -96,8 +85,7 @@ namespace Utility.Core
                             {
                                 count = cryptoStream.Read(buffer2, 0, 256);
                                 memoryStream2.Write(buffer2, 0, count);
-                            }
-                            while (count > 0);
+                            } while (count > 0);
                         }
                         catch (Exception ex)
                         {
@@ -107,7 +95,7 @@ namespace Utility.Core
                         {
                             cryptoStream.Close();
                         }
-                        byte[] numArray2 = memoryStream2.ToArray();
+                        var numArray2 = memoryStream2.ToArray();
                         memoryStream2.Close();
                         return numArray2;
                     }
@@ -117,25 +105,25 @@ namespace Utility.Core
 
         private void GetCryptoAlgorithm()
         {
-            switch (this.algorithmId)
+            switch (algorithmId)
             {
                 case CryptographyAlgorithm.Des:
-                    this.algorithm = (SymmetricAlgorithm)new DESCryptoServiceProvider();
+                    algorithm = new DESCryptoServiceProvider();
                     break;
                 case CryptographyAlgorithm.Rc2:
-                    this.algorithm = (SymmetricAlgorithm)new RC2CryptoServiceProvider();
+                    algorithm = new RC2CryptoServiceProvider();
                     break;
                 case CryptographyAlgorithm.Rijndael:
-                    this.algorithm = (SymmetricAlgorithm)new RijndaelManaged();
+                    algorithm = new RijndaelManaged();
                     break;
                 case CryptographyAlgorithm.TripleDes:
-                    this.algorithm = (SymmetricAlgorithm)new TripleDESCryptoServiceProvider();
+                    algorithm = new TripleDESCryptoServiceProvider();
                     break;
                 default:
-                    throw new CryptographicException("Algorithm Id '" + (object)this.algorithmId + "' not supported.");
+                    throw new CryptographicException("Algorithm Id '" + algorithmId + "' not supported.");
             }
-            this.algorithm.Mode = CipherMode.CBC;
-            this.keyLength = this.algorithm.LegalKeySizes[0].MaxSize / 8;
+            algorithm.Mode = CipherMode.CBC;
+            keyLength = algorithm.LegalKeySizes[0].MaxSize/8;
         }
 
         private byte[] GetSalt()
@@ -145,16 +133,16 @@ namespace Utility.Core
 
         private byte[] GetKey(byte[] salt)
         {
-            if (this.entropy == null || this.entropy.Trim().Length == 0)
-                this.entropy = CryptographyUtility.GetEntropy(this.keyLength);
-            return new PasswordDeriveBytes(this.entropy, salt).GetBytes(this.keyLength);
+            if (entropy == null || entropy.Trim().Length == 0)
+                entropy = CryptographyUtility.GetEntropy(keyLength);
+            return new PasswordDeriveBytes(entropy, salt).GetBytes(keyLength);
         }
 
         public override void Dispose()
         {
-            if (this.algorithm != null)
-                this.algorithm.Clear();
-            GC.SuppressFinalize((object)this);
+            if (algorithm != null)
+                algorithm.Clear();
+            GC.SuppressFinalize(this);
         }
     }
 }

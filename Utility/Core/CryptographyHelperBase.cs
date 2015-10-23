@@ -12,7 +12,7 @@ namespace Utility.Core
 
         public string Encrypt(string plaintext, StringEncodingType encoding)
         {
-            byte[] plaintext1 = ByteEncoding.StringToBytes(plaintext);
+            var plaintext1 = ByteEncoding.StringToBytes(plaintext);
             var bytes = Encrypt(plaintext1);
             string str;
             switch (encoding)
@@ -53,7 +53,7 @@ namespace Utility.Core
                     throw new ArgumentException("Unknown encoding type.");
             }
             var bytes = Decrypt(cipherText1);
-            string str = ByteEncoding.BytesToString(bytes);
+            var str = ByteEncoding.BytesToString(bytes);
             Array.Clear(cipherText1, 0, cipherText1.Length);
             Array.Clear(bytes, 0, bytes.Length);
             return str;

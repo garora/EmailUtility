@@ -90,7 +90,7 @@ namespace Utility.Core
                 });
                 var options = new CompilerParameters();
                 var assembly1 = Assembly.LoadWithPartialName(businessNamespace.Remove(businessNamespace.Length - 9));
-                string path1 = ConfigurationManager.AppSettings["AppServerBinDirectory"];
+                var path1 = ConfigurationManager.AppSettings["AppServerBinDirectory"];
                 if (string.IsNullOrEmpty(path1))
                     path1 = new FileInfo(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath).Directory.FullName;
                 if (!string.IsNullOrEmpty(path1))
@@ -190,7 +190,7 @@ namespace Utility.Core
                 var provider = CodeDomProvider.CreateProvider("C#");
                 var options = new CompilerParameters();
                 var assembly = Assembly.LoadWithPartialName(businessNamespace.Remove(businessNamespace.Length - 9));
-                string str2 = ConfigurationManager.AppSettings["AppServerBinDirectory"];
+                var str2 = ConfigurationManager.AppSettings["AppServerBinDirectory"];
                 if (string.IsNullOrEmpty(str2))
                     str2 = new FileInfo(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath).Directory.FullName;
                 if (!string.IsNullOrEmpty(str2))

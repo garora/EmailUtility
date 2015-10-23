@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Utility.Core
+﻿namespace Utility.Core
 {
     public class ValidationEvent
     {
-        public object Target;
-        public IValidationResults Results;
         public object Context;
+        public IValidationResults Results;
+        public object Target;
 
         public ValidationEvent(object target, IValidationResults results, object context)
         {
-            this.Target = target;
-            this.Results = results;
-            this.Context = context;
+            Target = target;
+            Results = results;
+            Context = context;
         }
 
         public ValidationEvent(object target, IValidationResults results)
         {
-            this.Target = target;
-            this.Results = results;
+            Target = target;
+            Results = results;
         }
 
         public T TargetT<T>()
         {
-            if (this.Target == null)
+            if (Target == null)
                 return default(T);
-            return (T)this.Target;
+            return (T) Target;
         }
     }
 }

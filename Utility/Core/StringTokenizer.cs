@@ -4,9 +4,9 @@ namespace Utility.Core
 {
     public class StringTokenizer
     {
+        private readonly ArrayList tokens;
         private int CurrIndex;
         private int NumTokens;
-        private readonly ArrayList tokens;
 
         public StringTokenizer(string source, string delimiter)
         {

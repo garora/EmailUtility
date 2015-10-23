@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Utility.Core
 {
@@ -15,50 +12,50 @@ namespace Utility.Core
 
         private static int GetByteCount(string hexString)
         {
-            int num = 0;
-            for (int index = 0; index < hexString.Length; ++index)
+            var num = 0;
+            for (var index = 0; index < hexString.Length; ++index)
             {
-                if (ByteEncoding.IsHexDigit(hexString[index]))
+                if (IsHexDigit(hexString[index]))
                     ++num;
             }
-            return num / 2;
+            return num/2;
         }
 
         public static byte[] HexToBytes(string hexString)
         {
             int discarded;
-            return ByteEncoding.HexToBytes(hexString, out discarded);
+            return HexToBytes(hexString, out discarded);
         }
 
         public static byte[] HexToBytes(string hexString, out int discarded)
         {
             discarded = 0;
-            StringBuilder stringBuilder = new StringBuilder(hexString.Length);
-            for (int index = 0; index < hexString.Length; ++index)
+            var stringBuilder = new StringBuilder(hexString.Length);
+            for (var index = 0; index < hexString.Length; ++index)
             {
-                char c = hexString[index];
-                if (ByteEncoding.IsHexDigit(c))
+                var c = hexString[index];
+                if (IsHexDigit(c))
                     stringBuilder.Append(c);
                 else
                     ++discarded;
             }
-            if (stringBuilder.Length % 2 != 0)
+            if (stringBuilder.Length%2 != 0)
             {
                 ++discarded;
                 stringBuilder = stringBuilder.Remove(stringBuilder.Length - 1, 1);
             }
-            int length = stringBuilder.Length / 2;
-            byte[] numArray = new byte[length];
-            int index1 = 0;
-            int index2 = 0;
+            var length = stringBuilder.Length/2;
+            var numArray = new byte[length];
+            var index1 = 0;
+            var index2 = 0;
             while (index1 < length)
             {
-                string hex = new string(new char[2]
-        {
-          stringBuilder[index2],
-          stringBuilder[index2 + 1]
-        });
-                numArray[index1] = ByteEncoding.HexToByte(hex);
+                var hex = new string(new char[2]
+                {
+                    stringBuilder[index2],
+                    stringBuilder[index2 + 1]
+                });
+                numArray[index1] = HexToByte(hex);
                 ++index1;
                 index2 += 2;
             }
@@ -67,17 +64,17 @@ namespace Utility.Core
 
         public static string BytesToHex(byte[] bytes)
         {
-            StringBuilder stringBuilder = new StringBuilder(bytes.Length);
-            for (int index = 0; index < bytes.Length; ++index)
+            var stringBuilder = new StringBuilder(bytes.Length);
+            for (var index = 0; index < bytes.Length; ++index)
                 stringBuilder.Append(bytes[index].ToString("X2"));
             return stringBuilder.ToString();
         }
 
         public static bool InHexFormat(string hexString)
         {
-            foreach (char c in hexString)
+            foreach (var c in hexString)
             {
-                if (!ByteEncoding.IsHexDigit(c))
+                if (!IsHexDigit(c))
                     return false;
             }
             return true;
@@ -85,10 +82,10 @@ namespace Utility.Core
 
         public static bool IsHexDigit(char c)
         {
-            int num1 = Convert.ToInt32('A');
-            int num2 = Convert.ToInt32('0');
+            var num1 = Convert.ToInt32('A');
+            var num2 = Convert.ToInt32('0');
             c = char.ToUpper(c);
-            int num3 = Convert.ToInt32(c);
+            var num3 = Convert.ToInt32(c);
             return num3 >= num1 && num3 < num1 + 6 || num3 >= num2 && num3 < num2 + 10;
         }
 

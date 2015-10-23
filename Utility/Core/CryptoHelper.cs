@@ -17,6 +17,24 @@ namespace Utility.Core
 
         private const string CRYPT_DEFAULT_PASSWORD = "abcd!@#";
         private const CryptoTypes CRYPT_DEFAULT_METHOD = CryptoTypes.encTypeRijndael;
+
+        private readonly byte[] SaltByteArray = new byte[13]
+        {
+            73,
+            118,
+            97,
+            110,
+            32,
+            77,
+            101,
+            100,
+            118,
+            101,
+            100,
+            101,
+            118
+        };
+
         private CryptoTypes mCryptoType = CryptoTypes.encTypeRijndael;
 
         private byte[] mIV = new byte[8]
@@ -60,23 +78,6 @@ namespace Utility.Core
         };
 
         private string mPassword = "abcd!@#";
-
-        private readonly byte[] SaltByteArray = new byte[13]
-        {
-            73,
-            118,
-            97,
-            110,
-            32,
-            77,
-            101,
-            100,
-            118,
-            101,
-            100,
-            101,
-            118
-        };
 
         public CryptoHelper()
         {

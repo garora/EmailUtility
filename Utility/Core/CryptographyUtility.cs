@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utility.Core
 {
@@ -15,20 +11,20 @@ namespace Utility.Core
 
         public static string GetEntropy(int length)
         {
-            return ByteEncoding.BytesToBase64(CryptographyUtility.GetRandomBytes(length));
+            return ByteEncoding.BytesToBase64(GetRandomBytes(length));
         }
 
         public static byte[] GetRandomBytes(int length)
         {
-            RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
-            byte[] data = new byte[length];
+            var randomNumberGenerator = RandomNumberGenerator.Create();
+            var data = new byte[length];
             randomNumberGenerator.GetBytes(data);
             return data;
         }
 
         public static void ZeroMemory(byte[] pByte)
         {
-            Array.Clear((Array)pByte, 0, pByte.Length);
+            Array.Clear(pByte, 0, pByte.Length);
         }
     }
 }

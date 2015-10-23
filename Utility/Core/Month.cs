@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Utility.Core
+﻿namespace Utility.Core
 {
     public enum Month
     {
@@ -19,6 +13,6 @@ namespace Utility.Core
         September = 9,
         October = 10,
         November = 11,
-        December = 12,
+        December = 12
     }
 }
