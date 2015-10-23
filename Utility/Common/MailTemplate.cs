@@ -18,7 +18,7 @@ namespace Utility.Common
         private string _mailBody = string.Empty;
         private string _mailSubject = string.Empty;
 
-        public MailTemplate(ETemplateList templateName)
+        public MailTemplate(MailTemplate.ETemplateList templateName)
         {
             using (var repository = new Repository())
             {
