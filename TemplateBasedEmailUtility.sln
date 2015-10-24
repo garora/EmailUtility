@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateBasedEmailUtility", "src\TemplateBasedEmailUtility\TemplateBasedEmailUtility.csproj", "{078626B5-4706-4019-86D1-A6B016DFDA2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "src\Utility\Utility.csproj", "{F362777A-111A-4E79-87C5-C6AC2DE42F96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "src\DAO\DAO.csproj", "{6F35C061-4C08-46F4-A0E5-7183E80F4038}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DDB769F5-7C9B-4CEB-A75B-C78117EB9A4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{078626B5-4706-4019-86D1-A6B016DFDA2B} = {DDB769F5-7C9B-4CEB-A75B-C78117EB9A4E}
+		{F362777A-111A-4E79-87C5-C6AC2DE42F96} = {DDB769F5-7C9B-4CEB-A75B-C78117EB9A4E}
+		{6F35C061-4C08-46F4-A0E5-7183E80F4038} = {DDB769F5-7C9B-4CEB-A75B-C78117EB9A4E}
 	EndGlobalSection
 EndGlobal
