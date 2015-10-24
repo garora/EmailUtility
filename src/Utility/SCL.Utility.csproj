@@ -7,8 +7,8 @@
     <ProjectGuid>{F362777A-111A-4E79-87C5-C6AC2DE42F96}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Utility</RootNamespace>
-    <AssemblyName>Utility</AssemblyName>
+    <RootNamespace>SCL.Utility</RootNamespace>
+    <AssemblyName>SCL.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -107,9 +107,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAO\DAO.csproj">
+    <ProjectReference Include="..\DAO\SCL.DAO.csproj">
       <Project>{6F35C061-4C08-46F4-A0E5-7183E80F4038}</Project>
-      <Name>DAO</Name>
+      <Name>SCL.DAO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

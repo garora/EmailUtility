@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TemplateBasedEmailUtility</RootNamespace>
-    <AssemblyName>TemplateBasedEmailUtility</AssemblyName>
+    <RootNamespace>SCL.EmailUtility</RootNamespace>
+    <AssemblyName>SCL.EmailUtility</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -238,9 +239,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utility\Utility.csproj">
+    <ProjectReference Include="..\Utility\SCL.Utility.csproj">
       <Project>{f362777a-111a-4e79-87c5-c6ac2de42f96}</Project>
-      <Name>Utility</Name>
+      <Name>SCL.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

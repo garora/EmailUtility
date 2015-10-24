@@ -7,8 +7,8 @@
     <ProjectGuid>{6F35C061-4C08-46F4-A0E5-7183E80F4038}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAO</RootNamespace>
-    <AssemblyName>DAO</AssemblyName>
+    <RootNamespace>SCL.DAO</RootNamespace>
+    <AssemblyName>SCL.DAO</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
