@@ -1,5 +1,0 @@
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\DAO\bin\Debug\DAO.dll
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\DAO\bin\Debug\DAO.pdb
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\DAO\obj\Debug\DAO.dll
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\DAO\obj\Debug\DAO.pdb
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache

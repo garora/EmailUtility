@@ -1,7 +1,0 @@
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\Utility\obj\Debug\Utility.csprojResolveAssemblyReference.cache
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\Utility\bin\Debug\Utility.dll
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\Utility\bin\Debug\Utility.pdb
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\Utility\obj\Debug\Utility.dll
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\Utility\obj\Debug\Utility.pdb
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\Utility\bin\Debug\DAO.dll
-D:\Gaurav-Stuff\TemplateBasedEmailUtility\Utility\bin\Debug\DAO.pdb
