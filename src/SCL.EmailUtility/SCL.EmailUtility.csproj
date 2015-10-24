@@ -239,7 +239,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utility\SCL.Utility.csproj">
+    <ProjectReference Include="..\SCL.Utility\SCL.Utility.csproj">
       <Project>{f362777a-111a-4e79-87c5-c6ac2de42f96}</Project>
       <Name>SCL.Utility</Name>
     </ProjectReference>

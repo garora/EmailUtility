@@ -107,7 +107,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAO\SCL.DAO.csproj">
+    <ProjectReference Include="..\SCL.DAO\SCL.DAO.csproj">
       <Project>{6F35C061-4C08-46F4-A0E5-7183E80F4038}</Project>
       <Name>SCL.DAO</Name>
     </ProjectReference>
